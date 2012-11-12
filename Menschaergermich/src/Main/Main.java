@@ -1,14 +1,20 @@
+package Main;
+
 import java.util.Scanner;
 
 public class Main {
 
 	static int nAnzahl = 0;
-	static String[] nNamen = new String[4];
+	static String[][] nNamen = new String[4][];
 
 	public static void anzahlholen() {
 		Scanner in = new Scanner(System.in);
 		System.out.println("Bitte geben Sie die Anzahl der Spieler ein: ");
 		nAnzahl = in.nextInt();
+		if(nAnzahl > 4){
+			System.out.println("Fehler. Max. 4 Spieler erlaubt.");
+			anzahlholen();
+		}
 		in.close();
 	}
 
@@ -17,20 +23,19 @@ public class Main {
 		anzahlholen();
 		namenholen();
 		spielen();
-		
+
 	}
 
 	private static void spielen() {
 	}
 
 	private static void namenholen() {
+		Scanner in2 = new Scanner(System.in);
 		System.out.println("Bitte geben Sie die Spielernamen ein: ");
-		Scanner in = new Scanner(System.in);
-		for(int i = 1; i <= nAnzahl; i++){
-			System.out.println("Name für Spieler: " + i + " bestimmen.");
-			nNamen[i] = in.nextLine();
-		}		
-		in.close();
+		for (int i = 0; i < nAnzahl; i++) {
+			System.out.println("Name für Spieler: " + (i + 1) + " bestimmen:");
+			nNamen[0][] = in2.nextLine();
+		}
 	}
 
 }
