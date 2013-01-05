@@ -25,26 +25,48 @@ public class Main {
 
 	public static void main(String[] args) {
 		System.out.println("Willkommen bei Mensch ärgere dich nicht 0.1");
+		System.out.println("Regeln: 2-4 Spieler erlaubt.");
+		System.out.println("Gewonnen hat, wer zuerst 80 erreicht.");
 		anzahlholen();
 		namenholen();
 		spielen();
-in.close();
+		in.close();
 	}
 
 	private static void spielen() {
-		in.nextLine();
-		for (int i = 0; i < nNamen.length; i++) {
-			System.out.println("Spieler " + (i + 1) + " ist dran.");
+		do {
+
 			in.nextLine();
-			nWuerfel[i] = wuerfeln();
-			System.out.println("Spieler " + (i + 1) + " würfelt: " + nWuerfel[i]);
-			nPosition[i] = nPosition[i] + nWuerfel[i];
-			in.nextLine();
-		}
-		for(int i = 0; i < nNamen.length; i++){
-			System.out.println(nNamen[i] + " befindet sich auf Position " + nPosition[i] + ".");
-		}
+			for (int i = 0; i < nNamen.length; i++) {
+				System.out.println("Spieler " + (i + 1) + " ist dran.");
+				in.nextLine();
+				nWuerfel[i] = wuerfeln();
+				System.out.println("Spieler " + (i + 1) + " würfelt: "
+						+ nWuerfel[i]);
+				nPosition[i] = nPosition[i] + nWuerfel[i];
+				in.nextLine();
+				if (nPosition[i] >= 80) {
+					System.out.println("Spieler " + (i + 1) + " hat gewonnen.");
+					return;
+				}
+			}
+			for (int i = 0; i < nNamen.length; i++) {
+				System.out.println(nNamen[i] + " befindet sich auf Position "
+						+ nPosition[i] + ".");
+			}
+
+		} while (true);
 	}
+
+	// private static boolean pruefen() {
+	// for (int i : nPosition) {
+	// if (i >= 80) {
+	// i = 80;
+	// return false;
+	// }
+	// }
+	// return true;
+	// }
 
 	private static void namenholen() {
 		System.out.println("Bitte geben Sie die Spielernamen ein: ");
@@ -57,6 +79,7 @@ in.close();
 
 	private static int wuerfeln() {
 		int i = 0;
+		i = (int) (Math.random() * 6 + 1);
 		return i;
 	}
 
