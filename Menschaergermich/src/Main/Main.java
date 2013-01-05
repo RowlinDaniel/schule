@@ -39,15 +39,21 @@ public class Main {
 			in.nextLine();
 			for (int i = 0; i < nNamen.length; i++) {
 				System.out.println("Spieler " + (i + 1) + " ist dran.");
-				in.nextLine();
 				nWuerfel[i] = wuerfeln();
+				in.nextLine();
 				System.out.println("Spieler " + (i + 1) + " würfelt: "
 						+ nWuerfel[i]);
 				nPosition[i] = nPosition[i] + nWuerfel[i];
-				in.nextLine();
-				if (nPosition[i] >= 80) {
+				if (nPosition[i] == 80) {
 					System.out.println("Spieler " + (i + 1) + " hat gewonnen.");
 					return;
+				}
+				if (nPosition[i] > 80) {
+					nPosition[i] = nPosition[i] - nWuerfel[i];
+					System.out.println("Spieler " + (i + 1)
+							+ " hat zu hoch gewürfelt. Er muss genau "
+							+ (80 - nPosition[i]) + " wuerfeln");
+
 				}
 			}
 			for (int i = 0; i < nNamen.length; i++) {
