@@ -35,26 +35,32 @@ public class Main {
 
 	private static void spielen() {
 		do {
-
 			in.nextLine();
 			for (int i = 0; i < nNamen.length; i++) {
-				System.out.println("Spieler " + (i + 1) + " ist dran.");
-				nWuerfel[i] = wuerfeln();
-				in.nextLine();
-				System.out.println("Spieler " + (i + 1) + " würfelt: "
-						+ nWuerfel[i]);
-				nPosition[i] = nPosition[i] + nWuerfel[i];
-				if (nPosition[i] == 80) {
-					System.out.println("Spieler " + (i + 1) + " hat gewonnen.");
-					return;
-				}
-				if (nPosition[i] > 80) {
-					nPosition[i] = nPosition[i] - nWuerfel[i];
-					System.out.println("Spieler " + (i + 1)
-							+ " hat zu hoch gewürfelt. Er muss genau "
-							+ (80 - nPosition[i]) + " wuerfeln");
+				do {
+					System.out.println("Spieler " + (i + 1) + " ist dran.");
+					nWuerfel[i] = wuerfeln();
+					in.nextLine();
+					System.out.println("Spieler " + (i + 1) + " würfelt: "
+							+ nWuerfel[i]);
+					nPosition[i] = nPosition[i] + nWuerfel[i];
+					if (nPosition[i] == 80) {
+						System.out.println("Spieler " + (i + 1)
+								+ " hat gewonnen.");
+						return;
+					}
+					if (nPosition[i] > 80) {
+						nPosition[i] = nPosition[i] - nWuerfel[i];
+						System.out.println("Spieler " + (i + 1)
+								+ " hat zu hoch gewürfelt. Er muss genau "
+								+ (80 - nPosition[i]) + " wuerfeln");
 
-				}
+					}
+					if (nWuerfel[i] == 6) {
+						System.out.println("Spieler " + (i + 1)
+								+ " darf noch einmal würfeln.");
+					}
+				} while (nWuerfel[i] == 6);
 			}
 			for (int i = 0; i < nNamen.length; i++) {
 				System.out.println(nNamen[i] + " befindet sich auf Position "
